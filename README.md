@@ -166,11 +166,11 @@ And the file ~/.sbt/1.0/plugins/plugins.sbt with contents:
 
 
 ``` scala
-addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.0.0")
+addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.1.2")
 addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "2.4")
 ```
 
-Follow the steps on https://www.scala-sbt.org/0.13/docs/Using-Sonatype.html to generate a gpg key for yourself. Make sure you publish the key. Run the following in sbt to do so:
+Follow the steps on https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html to generate a gpg key for yourself. Make sure you publish the key. Run the following in sbt to do so:
 
 ```
 pgp-cmd gen-key
@@ -181,7 +181,9 @@ Please re-enter the passphrase for the key: *************
 
 ```
 
-Send your key: `pgp-cmd send-key dyeung@datto.com http://keys.gnupg.net:11371`
+List your key and note your pub key: `pgp-cmd --list-keys`
+
+Send your key: `pgp-cmd --keyserver keyserver.ubuntu.com --send-keys <your pub key>`
 
 Now, you are ready to publish a version:
 
